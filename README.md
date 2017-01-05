@@ -45,4 +45,4 @@ You have to provide a JSON file containing a list of feeds, e.g.:
 
 _The `target` attribute is completely optional and will be returned with each entry._
 
-This file will be overwritten to save the `etag` and `modified` information, to ensure persistence. The `url` may also be replaced, if the original one lead to a redirection or was not complete.
+This file will be overwritten to save the `etag` and `modified` information, in order to ensure persistence. The `url` may also be replaced, if the original one lead to a redirection or if it was incomplete.
