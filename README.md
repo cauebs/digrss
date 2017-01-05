@@ -23,13 +23,9 @@ with Digrss(feeds_file_path='feeds.json',
         print(entry['summary'])
 ```
 
-The returned entries are FeedParserDicts and contain, among others, the following attributes:
-
-```link, title, authors, summary, content, links, published_parsed, updated_parsed, target```
-
-_See more on the [feedparser documentation](http://pythonhosted.org/feedparser/) under `entries[i]`_
-
-You have to provide a JSON file containing a list of feeds, e.g.:
++ `interval` is the polling interval in minutes
++ `fetch_old` defines whether past entries should be fetched on the first run
++ `feeds_file_path` must lead to a JSON file containing a list of feeds, e.g.:
 ```json
 [
     {
@@ -43,6 +39,13 @@ You have to provide a JSON file containing a list of feeds, e.g.:
 ]
 ```
 
-_The `target` attribute is completely optional and will be returned with each entry._
++ _The `target` attribute is completely optional and will be returned with each entry._
 
-This file will be overwritten to save the `etag` and `modified` information, in order to ensure persistence. The `url` may also be replaced, if the original one lead to a redirection or if it was incomplete.
++ This file will be overwritten to save the `etag` and `modified` information, in order to ensure persistence. The `url` may also be replaced, if the original one led to a redirection or if it was incomplete.
+
+The returned entries are FeedParserDicts and contain, among others*, the following attributes:
+
+```link, title, authors, summary, content, links, published_parsed, updated_parsed, target```
+
+
+_* read more in the [feedparser documentation](http://pythonhosted.org/feedparser/), under `entries[i]`_
