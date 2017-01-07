@@ -38,11 +38,18 @@ class Digrss:
                 last_etag = sub.get('etag')
                 last_modified = sub.get('modified')
                 feed = feedparser.parse(url, etag=last_etag, modified=last_modified)
+                if feed.bozo:
+                    continue
 
-                if last_etag or last_modified or self.fetch_old:
-                    for entry in feed.entries:
-                        entry['target'] = sub.get('target')
-                        self.queue.put(entry)
+                for entry in feed.entries:
+                    if not self.fetch_old:
+                        if not last_modified:
+                            break
+                        if entry.updated_parsed <= feedparser._parse_date(last_modified):
+                            continue
+
+                    entry['target'] = sub.get('target')
+                    self.queue.put(entry)
 
                 sub['url'] = feed.get('href')
                 sub['etag'] = feed.get('etag')

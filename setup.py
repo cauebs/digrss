@@ -1,6 +1,6 @@
 from setuptools import setup
 
-VERSION = '1.0'
+VERSION = '1.1'
 REQUIREMENTS = ['feedparser>=5.2.1']
 MODULES = []
 
