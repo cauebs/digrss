@@ -58,7 +58,10 @@ class Digrss:
             with open(self.feeds_file_path, 'w') as f:
                 json.dump(feeds, f, indent=4)
 
-            time.sleep(self.interval * 60)
+            sleep_end = time.time() + self.interval * 60
+
+            while (time.time() < sleep_end) and not self._signal_stop:
+                time.sleep(1)
 
     def __enter__(self):
         self.start()
